@@ -2223,11 +2223,11 @@ input, select, textarea {
 		#header .button {
 			display: inline-block;
 			border-radius: 100%;
-			width: 4.5em;
-			height: 4.5em;
-			line-height: 4.5em;
+			width: 2em;
+			height: 2em;
+			line-height: 2em;
 			text-align: center;
-			font-size: 1.25em;
+			font-size: 1em;
 			padding: 0;
 		}
 
@@ -2277,6 +2277,18 @@ input, select, textarea {
 
 	body.homepage.is-preload #header:after {
 		opacity: 1;
+	}
+
+
+	#header footer > p {
+		position: relative;
+		background: rgba(32, 32, 32, 0.5);
+		border-radius: 4em;
+		display: inline-block;
+		padding: 0.35em 0.75em 0.35em 0.75em;
+		font-size: 1em;
+		cursor: default;
+		list-style: none;
 	}
 
 /* Nav */
