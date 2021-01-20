@@ -2055,12 +2055,13 @@ input, select, textarea {
 	.button {
 		position: relative;
 		display: inline-block;
-		background: #df7366;
+		/*background: #df7366;*/
 		color: #fff;
 		text-align: center;
-		border-radius: 0.5em;
+		/*border-radius: 0.5em;*/
 		text-decoration: none;
-		padding: 0.65em 3em 0.65em 3em;
+		/*Ligne résponsable du problème d'affichage du fichier svg qui constitue le bouton*/
+		/*padding: 0.65em 3em 0.65em 3em;*/
 		border: 0;
 		cursor: pointer;
 		outline: 0;
@@ -2077,7 +2078,7 @@ input, select, textarea {
 		button:hover,
 		.button:hover {
 			color: #fff;
-			background: #ef8376;
+			/*background: #ef8376;*/
 		}
 
 		input[type="button"].alt,
@@ -2085,7 +2086,7 @@ input, select, textarea {
 		input[type="reset"].alt,
 		button.alt,
 		.button.alt {
-			background: #2B252C;
+			/*background: #2B252C;*/
 		}
 
 			input[type="button"].alt:hover,
@@ -2093,7 +2094,7 @@ input, select, textarea {
 			input[type="reset"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background: #3B353C;
+				/*background: #3B353C;*/
 			}
 
 /* Post */
@@ -3148,3 +3149,15 @@ input, select, textarea {
 					}
 
 	}
+
+.welcome {
+	display: inline-block;
+	background: rgba(252, 170, 62, 0.34) none repeat scroll 0% 0%;
+	color: black;
+	padding: 0.5em 1.5em;
+	margin-left: 1em;
+	white-space: pre-line;
+	border-radius: 8px 8px 8px 0px;
+	font-size: 16px;
+	font-family: 'Source Sans Pro', sans-serif;
+}

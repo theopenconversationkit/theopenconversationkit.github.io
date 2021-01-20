@@ -1,454 +1,883 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Tock</title>
-		<link rel="shortcut icon" href="images/logo/favicon.png">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+<head>
+    <title>Tock</title>
+    <link rel="shortcut icon" href="images/logo/favicon.png">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@emotion/core@10/dist/core.umd.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@emotion/styled@10/dist/styled.umd.min.js"></script>
+    <script crossorigin src="https://unpkg.com/emotion-theming@10/dist/emotion-theming.umd.min.js"></script>
+    <script
+            crossorigin
+            src="https://unpkg.com/tock-react-kit@latest/build/tock-react-kit.umd.js"
+    ></script>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
 
-			<!-- Header -->
-				<div id="header">
+    <!-- Style based on: https://codepen.io/shivapandey/pen/dWdRYM -->
+    <style>
 
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h1><a href="index.html" id="logo"><img src="images/logo/Logo_Tock_White.svg" style="width: 50%;" alt="Logo" /> Tock</a></h1>
-								<p><em>The Open Conversation Kit</em></p>
-							</header>
-							<footer>
-								<p><a href="https://github.com/theopenconversationkit/tock" target="_repo_tock" title="Projet et sources disponibles sur GitHub">
-									Sources sur <span class="icon brands fa-github label"></span></a></p>
-								<p><a href="https://gitter.im/tockchat/Lobby" target="_gitter" title="Retrouvez la communauté Tock sur Gitter (tchat)">
-									Parlons-en sur <span class="icon brands fa-gitter label"></span></a></a></p><br>
-								<p><a href="#banner" class="scrolly">En savoir plus... <span class="icon solid fa-chevron-down"></span></a></p>
-							</footer>
-						</div>
+        #chat-circle {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            background: #efefef;
+            text-align: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            color: white;
+            padding: 28px;
+            cursor: pointer;
+            box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li>
-									<a href="https://www.allocovid.com/" target="_allocovid" title="Le bot AlloCovid est construit avec Tock">
-									📞&nbsp;&nbsp;<span style="color: #3399FF; font-weight: bold;">Allo</span><span style="color: #66FF99; font-weight: bold;">Covid</span>
-									</a>
-									<ul>
-										<li><a href="https://www.allocovid.com/" target="_allocovid">www.allocovid.com</a></li>
-										<li><a href="https://github.com/theopenconversationkit/allocovid" target="_repo_allocovid">Sources</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/#allocovid">En savoir plus...</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="https://github.com/theopenconversationkit/tock" target="_repo_tock">Github</a>
-									<ul>
-										<li><a href="https://github.com/theopenconversationkit/tock" target="_repo_tock">tock</a></li>
-										<li><a href="https://github.com/theopenconversationkit/tock-docker" target="_repo_tock-docker">tock-docker</a></li>
-										<li><a href="https://github.com/theopenconversationkit/tock-react-kit" target="_repo_tock-react-kit">tock-react-kit</a></li>
-										<li><a href="https://github.com/theopenconversationkit/allocovid" target="_repo_allocovid">allocovid</a></li>
-										<li><a href="https://github.com/theopenconversationkit/" target="_github">...</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="https://doc.tock.ai/tock/fr/">Documentation</a>
-									<ul>
-										<li><a href="https://doc.tock.ai/tock/fr/">Documentation</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/guide/studio/">Guide <em>Créer son 1<sup>er</sup> bot avec Tock</em></a></li>
-										<li><a href="http://doc.tock.ai/tock/fr/apropos/contribuer/">Guide de contribution</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="https://demo.tock.ai/" target="_demo">Démo</a>
-									<ul>
-										<li><a href="https://demo.tock.ai/" target="_demo">Tester la démo en ligne</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/guide/studio/">Guide <em>Créer son 1<sup>er</sup> bot avec Tock</em></a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Vitrine</a>
-									<ul>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Qui utilise Tock ?</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/recompenses/">Prix et récompenses</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/ressources/">Présentations</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/ressources/#kit-presse">Kit presse</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="https://doc.tock.ai/tock/fr/apropos/contact/">Communauté</a>
-									<ul>
-										<li><a href="https://www.allocovid.com/" target="_allocovid">AlloCovid</a></li>
-										<li><a href="https://hackandbot.sncf.com/" target="_hackathon">Hackathon Tock</a></li>
-										<li><a href="http://tosit.fr/" target="_tosit">TOSIT.fr</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Utilisateurs connus</a></li>
-										<li><a href="https://doc.tock.ai/tock/fr/apropos/contact/">Nous contacter</a></li>
-									</ul>
-								</li>
-								<li><a href="../en/" title="Basculer en Anglais">🇫🇷 🇬🇧</a></li>
-							</ul>
-						</nav>
+        .btn#my-btn {
+            background: white;
+            padding-top: 13px;
+            padding-bottom: 12px;
+            border-radius: 45px;
+            padding-right: 40px;
+            padding-left: 40px;
+            color: #5865C3;
+        }
 
-				</div>
+        #chat-overlay {
+            background: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: none;
+        }
 
-			<!-- Banner -->
-				<section id="banner">
-					<header>
-						<h2><strong>Tock</strong>, une plateforme conversationnelle ouverte.</h2>
-						<p>
-							Solution complète pour construire des agents conversationnels ou <em>bots</em>.
-						</p>
-						<p>
-							Ne dépend pas d'API tierces. Maîtrise des modèles et des données.
-						</p>
-						<p>
-							Sources disponibles sur <a href="https://github.com/theopenconversationkit/tock" target="_repo_tock">
-							GitHub <span class="icon brands fa-github label"></span></a>.
-							Communauté sur <a href="https://gitter.im/tockchat/Lobby" target="_github">Gitter <span class="icon brands fa-gitter label"></span></a>.
-						</p>
-						<p>
-							Avec le soutien de l'association <a href="http://doc.tock.ai/tock/fr/apropos/communaute/#association-tosit">TOSIT <sup><em>(The Open Source I Trust)</em></sup></a>.
-						</p>
-						<p>
-							<a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">En production</a> depuis 2016
-							sur de <a href="https://doc.tock.ai/tock/fr/user/guides/canaux/">nombreux canaux</a>.
-						</p>
-					</header>
-				</section>
+        .chat-box {
+            z-index: 30;
+            display: none;
+            background: #efefef;
+            position: fixed;
+            right: 30px;
+            bottom: 50px;
+            width: 33vw;
+            max-width: 85vw;
+            max-height: 80vh;
+            border-radius: 20px;
+            /*   box-shadow: 0px 5px 35px 9px #464a92; */
+            box-shadow: 20px 20px 5px 1px rgba(0, 0, 0, 0.5);
+        }
 
-			<!-- Carousel -->
-				<section class="carousel">
-					<div class="reel">
+        .chat-box-toggle {
+            float: right;
+            margin-right: 15px;
+            cursor: pointer;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/pic00.jpg" alt="" /></span>
-							<header>
-								<h3>Solution éprouvée</h3>
-							</header>
-							<p>Tock est au coeur de services plébiscités comme l'<a href="https://www.oui.sncf/bot/" target="_ouibot">assistant
-								<span style="color: #ea5330; font-weight: bold;">OUI</span><span style="color: orange; font-weight: bold;">.sncf</span></a>
-								(<a href="https://blog-cultures-services.com/2019/07/09/ouibot-de-ouisncf-laureat-prix-best-robot-experience-2019/"
-									target="_bestrobotexperience"><em>Best Robot Experience</em></a> en 2018+2019)
-								ou le service <a href="https://www.allocovid.com/" target="_allocovid" title="Le bot AlloCovid est construit avec Tock">
-									📞&nbsp;&nbsp;<span style="color: #3399FF; font-weight: bold;">Allo</span><span style="color: #66FF99; font-weight: bold;">Covid</span>
-								</a> en 2020.</p>
-						</article>
+        .chat-box-header {
+            background: #fcaa3e;
+            height: 70px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 17px;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-							<header>
-								<h3>Compréhension du langage</h3>
-							</header>
-							<p>Une solution <em>NLU</em> complète et autonome tirant parti de composants opensource
-								comme <a href="https://opennlp.apache.org/" target="_opennlp">OpenNLP</a>,
-								<a href="https://stanfordnlp.github.io/CoreNLP/" target="_stanford">Stanford</a>,
-								<a href="https://github.com/facebook/duckling" target="_duckling">Duckling</a>
-								et +.</p>
-						</article>
+        .chat-box-body {
+            position: relative;
+            height: 370px;
+            height: auto;
+            /*border:1px solid #ccc;*/
+            overflow: hidden;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-							<header>
-								<h3>Assistants tous canaux</h3>
-							</header>
-							<p>Web, mobile, réseaux sociaux, enceintes connectées...
-								Créez un bot maintenant et connectez-le progressivement à tous vos canaux.</p>
-						</article>
+        .chat-box-body:after {
+            content: "";
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAgOCkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGNpcmNsZSBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgY3g9IjE3NiIgY3k9IjEyIiByPSI0Ii8+PHBhdGggZD0iTTIwLjUuNWwyMyAxMW0tMjkgODRsLTMuNzkgMTAuMzc3TTI3LjAzNyAxMzEuNGw1Ljg5OCAyLjIwMy0zLjQ2IDUuOTQ3IDYuMDcyIDIuMzkyLTMuOTMzIDUuNzU4bTEyOC43MzMgMzUuMzdsLjY5My05LjMxNiAxMC4yOTIuMDUyLjQxNi05LjIyMiA5LjI3NC4zMzJNLjUgNDguNXM2LjEzMSA2LjQxMyA2Ljg0NyAxNC44MDVjLjcxNSA4LjM5My0yLjUyIDE0LjgwNi0yLjUyIDE0LjgwNk0xMjQuNTU1IDkwcy03LjQ0NCAwLTEzLjY3IDYuMTkyYy02LjIyNyA2LjE5Mi00LjgzOCAxMi4wMTItNC44MzggMTIuMDEybTIuMjQgNjguNjI2cy00LjAyNi05LjAyNS0xOC4xNDUtOS4wMjUtMTguMTQ1IDUuNy0xOC4xNDUgNS43IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTg1LjcxNiAzNi4xNDZsNS4yNDMtOS41MjFoMTEuMDkzbDUuNDE2IDkuNTIxLTUuNDEgOS4xODVIOTAuOTUzbC01LjIzNy05LjE4NXptNjMuOTA5IDE1LjQ3OWgxMC43NXYxMC43NWgtMTAuNzV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjcxLjUiIGN5PSI3LjUiIHI9IjEuNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjE3MC41IiBjeT0iOTUuNSIgcj0iMS41Ii8+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iODEuNSIgY3k9IjEzNC41IiByPSIxLjUiLz48Y2lyY2xlIGZpbGw9IiMwMDAiIGN4PSIxMy41IiBjeT0iMjMuNSIgcj0iMS41Ii8+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTkzIDcxaDN2M2gtM3ptMzMgODRoM3YzaC0zem0tODUgMThoM3YzaC0zeiIvPjxwYXRoIGQ9Ik0zOS4zODQgNTEuMTIybDUuNzU4LTQuNDU0IDYuNDUzIDQuMjA1LTIuMjk0IDcuMzYzaC03Ljc5bC0yLjEyNy03LjExNHpNMTMwLjE5NSA0LjAzbDEzLjgzIDUuMDYyLTEwLjA5IDcuMDQ4LTMuNzQtMTIuMTF6bS04MyA5NWwxNC44MyA1LjQyOS0xMC44MiA3LjU1Ny00LjAxLTEyLjk4N3pNNS4yMTMgMTYxLjQ5NWwxMS4zMjggMjAuODk3TDIuMjY1IDE4MGwyLjk0OC0xOC41MDV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxwYXRoIGQ9Ik0xNDkuMDUgMTI3LjQ2OHMtLjUxIDIuMTgzLjk5NSAzLjM2NmMxLjU2IDEuMjI2IDguNjQyLTEuODk1IDMuOTY3LTcuNzg1LTIuMzY3LTIuNDc3LTYuNS0zLjIyNi05LjMzIDAtNS4yMDggNS45MzYgMCAxNy41MSAxMS42MSAxMy43MyAxMi40NTgtNi4yNTcgNS42MzMtMjEuNjU2LTUuMDczLTIyLjY1NC02LjYwMi0uNjA2LTE0LjA0MyAxLjc1Ni0xNi4xNTcgMTAuMjY4LTEuNzE4IDYuOTIgMS41ODQgMTcuMzg3IDEyLjQ1IDIwLjQ3NiAxMC44NjYgMy4wOSAxOS4zMzEtNC4zMSAxOS4zMzEtNC4zMSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuMjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=');
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-							<header>
-								<h3>Tock Studio</h3>
-							</header>
-							<p>Des interfaces graphiques simples pour créer scénarios et modèles, gérer multicanal et multilingue,
-								analyser les tendances dans les conversations.</p>
-						</article>
+        #chat-input {
+            background: #f4f7f9;
+            width: 100%;
+            position: relative;
+            height: 47px;
+            padding-top: 10px;
+            padding-right: 50px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            border: none;
+            resize: none;
+            outline: none;
+            border: 1px solid #ccc;
+            color: #888;
+            border-top: none;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            overflow: hidden;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/pic04.jpg" alt="" /></span>
-							<header>
-								<h3>Framework & API</h3>
-							</header>
-							<p>Développez des parcours complexes avec <a href="https://kotlinlang.org/" target="_kotlin">Kotlin</a>,
-								<a href="https://www.python.org/" target="_python">Python</a> ou
-								<a href="https://nodejs.org" target="_nodejs">Node.js</a>
-								grâce aux composants fournis ou n'importe quel langage avec les <em>API</em> Tock.</p>
-						</article>
+        .chat-input > form {
+            margin-bottom: 0;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/pic05.jpg" alt="" /></span>
-							<header>
-								<h3>Où vous voulez</h3>
-							</header>
-							<p>Testez Tock <a href="https://demo.tock.ai/" target="_demo">en ligne</a>, déployez en quelques minutes
-								<a href="https://doc.tock.ai/tock/fr/guide/plateforme/">avec Docker</a>
-								ou créez <a href="https://doc.tock.ai/tock/fr/admin/installation/">votre propre plateforme</a>
-								<em>Cloud</em>, <em>On-Premise</em> ou même embarquée.</p>
-						</article>
+        #chat-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #ccc;
+        }
 
-						<article>
-							<span class="image featured"><img src="images/award.jpg" alt="" /></span>
-							<header>
-								<h3>Ouvert, pour tous</h3>
-							</header>
-							<p>Tock est entièrement <em>Open Source</em>, disponible pour tous sur
-								<a href="https://github.com/theopenconversationkit/" target="_github">son espace GitHub</a>
-								et récompensé avec la SNCF par le prix
-								<a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/"
-								   target="_acteursdulibre"><em>Les Acteurs Du Libre</em></a> en 2019.</p>
-						</article>
+        #chat-input::-moz-placeholder { /* Firefox 19+ */
+            color: #ccc;
+        }
 
-					</div>
-				</section>
+        #chat-input:-ms-input-placeholder { /* IE 10+ */
+            color: #ccc;
+        }
+
+        #chat-input:-moz-placeholder { /* Firefox 18- */
+            color: #ccc;
+        }
+
+        .chat-submit {
+            position: absolute;
+            bottom: 3px;
+            right: 10px;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            border-radius: 50%;
+            color: #5A5EB9;
+            width: 35px;
+            height: 35px;
+        }
+
+        .chat-logs {
+            padding: 15px;
+            max-height: 50vh;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .chat-logs::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+
+        .chat-logs::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+
+        .chat-logs::-webkit-scrollbar-thumb {
+            background-color: #5A5EB9;
+        }
 
 
-			<!-- Features -->
-			<div class="wrapper style1">
+        @media only screen and (max-width: 500px) {
+            .chat-logs {
+                height: 40vh;
+            }
+        }
 
-				<section id="features" class="container special">
-					<header>
-						<h2>Une communauté active.</h2>
-						<p>
-							De plus en plus d'acteurs font confiance à Tock et aux plateformes conversationnelles ouvertes.<br>
-							N'hésitez pas à venir en parler avec la communauté sur
-							<a href="https://gitter.im/tockchat/Lobby" target="_gitter" title="Retrouvez la communauté Tock sur Gitter (tchat)">
-							Gitter <span class="icon brands fa-gitter label"></span></a>.
-						</p>
-					</header>
-					<div class="row">
-						<article class="col-4 col-12-mobile special">
-							<a href="https://www.ima-dt.org/ima/event/detail.html/idConf/952" target="_ima" class="image featured">
-								<img src="images/ima.png" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://www.ima-dt.org/ima/event/detail.html/idConf/952" target="_ima">Tock se présente à l'IMA</a></h3>
-							</header>
-							<p>
-								Après le <a href="https://www.ima-dt.org/ima/event/detail.html/idConf/894/" target="_ima_nlp">
-								<em>Do Tank Data Science: NLP</em></a> en 2020, Tock revient à
-								l'<a href="https://www.ima-dt.org/ima/accueil/detail.html/" target="_ima">IMA
-								<em>(Innovation Makers Alliance)</em></a> pour se présenter plus en détails
-								dans le cadre du <em>parcours Open Source</em> avec SNCF et Enedis.<br><br>
+    </style>
+</head>
+<body class="homepage is-preload" style="z-index: 1">
+<div id="page-wrapper">
 
-								N'hésitez pas à <a href="https://www.ima-dt.org/ima/event/detail.html/idConf/952/" target="_ima">
-								vous inscrire (gratuit)</a> et rendez-vous le <strong>21 janvier 2021 (via Teams)</strong>
-								pour retrouver la communauté IMA, Tock et Open Source.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://www.voicetechparis.com/conferences-2/"
-							   target="_voicetech" class="image featured">
-								<img src="https://www.voicetechparis.com/wp-content/uploads/2020/10/img-digitale-orange.png" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://www.voicetechparis.com/conferences-2/"
-									   target="_voicetech">AlloCovid à Voice Tech Paris</a></h3>
-							</header>
-							<p>
-								Le salon <a href="https://www.voicetechparis.com" target="_voicetech"><em>Voice Tech Paris</em></a> 2020
-								accueillera une partie de
-								l'<a href="https://www.allocovid.com/equipe-2" target="_allocovid">équipe AlloCovid</a>
-								(INSERM, SNCF, Allo-Media) pour un retour sur la mise en place de ce service
-								conversationnel basé sur Tock.<br><br>
+    <div id="chat-circle" class="btn btn-raised">
+        <div id="chat-overlay"></div>
+        <img src="images/botchat.png"/>
+    </div>
 
-								RDV le mardi 24/11 à 16h pour la conférence
-								<a href="https://www.voicetechparis.com/conferences-2/" target="_voicetech">
-								<strong>AlloCovid, un service téléphonique conversationnel à grande échelle - L'IA
-								au service de la Santé</strong></a>.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://fr.slideshare.net/FrancoisN0/tock-mlusine-rex-ia-open-source-aiparis-2020"
-							   target="_aiparis_slides" class="image featured">
-								<img src="images/aiparis2020rex.jpg" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://fr.slideshare.net/FrancoisN0/tock-mlusine-rex-ia-open-source-aiparis-2020"
-									   target="_aiparis_slides">AI Paris 2020</a></h3>
-							</header>
-							<p>
-								Le salon <a href="https://aiparis.fr/2020/" target="_aiparis"><em>AI Paris</em></a> 2020
-								a accueilli en septembre une table ronde puis un REX sur le thème
-								<strong>IA & Open Source</strong> avec SNCF, ENEDIS et MAIF.<br><br>
+    <div class="chat-box">
+        <div class="chat-box-header">
+            Parlons un peu de Tock...
+            <span class="chat-box-toggle"><span class="icon fa-window-close"></span></span>
+        </div>
+        <div class="chat-box-body">
+            <div class="chat-box-overlay">
+            </div>
 
-								Le 14/09 avait lieu <a href="https://aiparis.fr/2020/les-conferences/" target="_aiparis_14">
-								<strong>la table ronde</strong></a> "<em>IA & Open Source pour les grands comptes</em>"
-								avec e.Voyageurs SNCF, ENEDIS, MAIF et TOSIT.fr.
-								Puis le 15, <a href="https://fr.slideshare.net/FrancoisN0/tock-mlusine-rex-ia-open-source-aiparis-2020"
-											   target="_aiparis_slides"><strong>le REX sur Tock et Mélusine</strong></a>.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://www.allocovid.com/" target="_allocovid" class="image featured">
-								<img src="images/allocovid.png" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://www.allocovid.com/" target="_allocovid">AlloCovid, un bot engagé</a></h3>
-							</header>
-							<p>
-								Le service <a href="https://www.allocovid.com/" target="_allocovid"><strong><em>AlloCovid</em></strong></a>,
-								construit autour d'un <a href="https://github.com/theopenconversationkit/allocovid" target="_allocovid_bot">bot Tock</a>,
-								permet d'informer et orienter la population sur le Covid-19.
-								Fruit de la collaboration de nombreux experts français, partenaires et bénévoles,
-								il est accessible par téléphone, sur le Web et WhatsApp.<br><br>
-								Pour en savoir plus, RDV sur <a href="https://www.allocovid.com/" target="_allocovid"><strong><em>www.allocovid.com</em></strong></a>.
-								Les sources du bot sont elles disponibles <a href="https://github.com/theopenconversationkit/allocovid" target="_allocovid_bot">ici</a>.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/" target="_acteursdulibre" class="image featured">
-								<img src="images/prixacteursdulibre2019.png" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/" target="_acteursdulibre">Meilleure Stratégie Open Source 2019</a></h3>
-							</header>
-							<p>
-								En 2019 la SNCF est récompensée par <a href="https://lesacteursdulibre.com/" target="_acteursdulibre"><strong><em>Les Acteurs du Libre</em></strong></a>
-								pour la <a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/" target="_acteursdulibre">
-								<strong><em>Meilleure Stratégie Open Source</em></strong></a> et le partage de
-								plateformes ouvertes comme Tock (e.Voyageurs) ou <a href="https://www.navitia.io/" target="_navitia">Navitia</a> (Kisio Digital).<br><br>
-								Remise du prix le <strong>10 décembre</strong> dans le Grand Auditorium du
-								<a href="https://www.opensourcesummit.paris/" target="_poss"><em>Paris Open Source Summit</em></a>
-								(<a href="https://www.flickr.com/photos/186089225@N03/albums/72157712273229483" target="_photos_adl">photos</a>).
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video" class="image featured">
-								<img src="images/POSS2019.jpeg" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video">Paris Open Source Summit</a></h3>
-							</header>
-							<p>
-								Les créateurs de Tock, des représentants de SNCF, Enedis, EDF, Orange, SogetiLabs et TOSIT
-								partagent leurs expériences et enjeux
-								sur le thème "<a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video">
-								<strong><em>Conversationnel & Open Source</em></strong></a>" :
-								innovation, agilité, souveraineté numérique, pérennité, gouvernance...<br><br>
-								Vous pouvez retrouver la conférence <a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video">
-								en ligne</a> sur la chaîne du <a href="https://www.opensourcesummit.paris/" target="_poss"><em>Paris Open Source Summit</em></a> 2019.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://hackandbot.sncf.com/" target="_hackandbot" class="image featured">
-								<img src="images/hackandbot2019.jpeg" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://hackandbot.sncf.com/" target="_hackandbot">Hackathon pour tous !</a></h3>
-							</header>
-							<p>
-								La SNCF met à disposition sa plateforme Tock pour un hackathon de deux jours
-								dédié au Conversationnel. L'événement est ouvert à tous et tous les usages : mobilités,
-								accessibilité, divertissement... Que le meilleur gagne !<br><br>
-								Rendez-vous les <strong>21-22 novembre</strong> à l'Espace 574 (St Denis) et sur le site
-								du <a href="https://hackandbot.sncf.com/" target="_hackandbot"><strong><em>Hack & Bot</em></strong></a>.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://demo.tock.ai/" target="_demotock" class="image featured">
-								<img src="images/sandbox.jpg" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://demo.tock.ai/" target="_demotock">Une plateforme Tock disponible pour tous</a></h3>
-							</header>
-							<p>
-								Depuis cet été, une plateforme publique est disponible en ligne, permettant de
-								<strong>tester la solution Tock sans rien installer</strong>. Tout est expliqué dans la documentation,
-								alors suivez le guide !<br><br>
-								Connectez-vous sur <a href="https://demo.tock.ai/" target="_demotock"><strong>demo.tock.ai</strong></a>
-								et suivez les instructions "<a href="https://doc.tock.ai/tock/fr/guide/studio/" target="_docdemo"><em>Découvrir Tock</em></a>".
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="http://tosit.fr/" target="_tosit" class="image featured">
-								<img src="images/tosit-tmp.png" alt="" />
-							</a>
-							<header>
-								<h3><a href="http://tosit.fr/" target="_tosit">TOSIT crée son GT Chatbot</a></h3>
-							</header>
-							<p>
-								L'association inter-enterprises <a href="http://tosit.fr/" target="_tosit">TOSIT "<em>The Open Source I Trust</em>"</a>
-								crée un <strong>Groupe de Travail dédié aux <em>Chatbots</em></strong> afin de partager
-								expérience et solutions ouvertes - notamment Tock utilisé par plusieurs membres.<br><br>
-								Rendez-vous sur <a href="http://tosit.fr/" target="_tosit">TOSIT.fr</a> pour en savoir plus.
-							</p>
-						</article>
-						<article class="col-4 col-12-mobile special">
-							<a href="https://doc.tock.ai/tock/fr/apropos/vitrine/" class="image featured">
-								<img src="images/bestrobot2019.jpeg" alt="" />
-							</a>
-							<header>
-								<h3><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Ils utilisent déjà Tock...</a></h3>
-							</header>
-							<p>
-								Qu'ils nous parlent sur des sites, nos mobiles, réseaux sociaux ou enceintes connectées,
-								ces assistants et ces entreprises s'appuient sur l'Open Source pour développer
-								des services innovants.<br><br>
-								Découvrez les premiers <a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">utilisateurs de Tock</a>.
-							</p>
-						</article>
-					</div>
-				</section>
+            <div class="chat-logs">
+                <div id="chat"></div>
+                <div class="welcome">Bonjour je suis Toki. Je serai bientôt incollable sur Tock 😉<br>Une question ?
+                    Comment puis-je vous aider ?
+                </div>
+            </div>
+        </div>
+    </div>
 
-			</div>
+    <!-- Header -->
+    <div id="header">
+
+        <!-- Inner -->
+        <div class="inner">
+            <header>
+                <h1><a href="index.html" id="logo"><img src="images/logo/Logo_Tock_White.svg" style="width: 50%;"
+                                                        alt="Logo"/> Tock</a></h1>
+                <p><em>The Open Conversation Kit</em></p>
+            </header>
+            <footer>
+                <p><a href="https://github.com/theopenconversationkit/tock" target="_repo_tock"
+                      title="Projet et sources disponibles sur GitHub">
+                    Sources sur <span class="icon brands fa-github label"></span></a></p>
+                <p><a href="https://gitter.im/tockchat/Lobby" target="_gitter"
+                      title="Retrouvez la communauté Tock sur Gitter (tchat)">
+                    Parlons-en sur <span class="icon brands fa-gitter label"></span></a></a></p><br>
+                <p><a href="#banner" class="scrolly">En savoir plus... <span class="icon solid fa-chevron-down"></span></a>
+                </p>
+            </footer>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="https://www.allocovid.com/" target="_allocovid"
+                       title="Le bot AlloCovid est construit avec Tock">
+                        📞&nbsp;&nbsp;<span style="color: #3399FF; font-weight: bold;">Allo</span><span
+                            style="color: #66FF99; font-weight: bold;">Covid</span>
+                    </a>
+                    <ul>
+                        <li><a href="https://www.allocovid.com/" target="_allocovid">www.allocovid.com</a></li>
+                        <li><a href="https://github.com/theopenconversationkit/allocovid" target="_repo_allocovid">Sources</a>
+                        </li>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/#allocovid">En savoir plus...</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://github.com/theopenconversationkit/tock" target="_repo_tock">Github</a>
+                    <ul>
+                        <li><a href="https://github.com/theopenconversationkit/tock" target="_repo_tock">tock</a></li>
+                        <li><a href="https://github.com/theopenconversationkit/tock-docker" target="_repo_tock-docker">tock-docker</a>
+                        </li>
+                        <li><a href="https://github.com/theopenconversationkit/tock-react-kit"
+                               target="_repo_tock-react-kit">tock-react-kit</a></li>
+                        <li><a href="https://github.com/theopenconversationkit/allocovid" target="_repo_allocovid">allocovid</a>
+                        </li>
+                        <li><a href="https://github.com/theopenconversationkit/" target="_github">...</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://doc.tock.ai/tock/fr/">Documentation</a>
+                    <ul>
+                        <li><a href="https://doc.tock.ai/tock/fr/">Documentation</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/guide/studio/">Guide <em>Créer son 1<sup>er</sup> bot
+                            avec Tock</em></a></li>
+                        <li><a href="http://doc.tock.ai/tock/fr/apropos/contribuer/">Guide de contribution</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://demo.tock.ai/" target="_demo">Démo</a>
+                    <ul>
+                        <li><a href="https://demo.tock.ai/" target="_demo">Tester la démo en ligne</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/guide/studio/">Guide <em>Créer son 1<sup>er</sup> bot
+                            avec Tock</em></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Vitrine</a>
+                    <ul>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Qui utilise Tock ?</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/recompenses/">Prix et récompenses</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/ressources/">Présentations</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/ressources/#kit-presse">Kit presse</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://doc.tock.ai/tock/fr/apropos/contact/">Communauté</a>
+                    <ul>
+                        <li><a href="https://www.allocovid.com/" target="_allocovid">AlloCovid</a></li>
+                        <li><a href="https://hackandbot.sncf.com/" target="_hackathon">Hackathon Tock</a></li>
+                        <li><a href="http://tosit.fr/" target="_tosit">TOSIT.fr</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Utilisateurs connus</a></li>
+                        <li><a href="https://doc.tock.ai/tock/fr/apropos/contact/">Nous contacter</a></li>
+                    </ul>
+                </li>
+                <li><a href="../en/" title="Basculer en Anglais">🇫🇷 🇬🇧</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <!-- Banner -->
+    <section id="banner">
+        <header>
+            <h2><strong>Tock</strong>, une plateforme conversationnelle ouverte.</h2>
+            <p>
+                Solution complète pour construire des agents conversationnels ou <em>bots</em>.
+            </p>
+            <p>
+                Ne dépend pas d'API tierces. Maîtrise des modèles et des données.
+            </p>
+            <p>
+                Sources disponibles sur <a href="https://github.com/theopenconversationkit/tock" target="_repo_tock">
+                GitHub <span class="icon brands fa-github label"></span></a>.
+                Communauté sur <a href="https://gitter.im/tockchat/Lobby" target="_github">Gitter <span
+                    class="icon brands fa-gitter label"></span></a>.
+            </p>
+            <p>
+                Avec le soutien de l'association <a
+                    href="http://doc.tock.ai/tock/fr/apropos/communaute/#association-tosit">TOSIT <sup><em>(The Open
+                Source I Trust)</em></sup></a>.
+            </p>
+            <p>
+                <a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">En production</a> depuis 2016
+                sur de <a href="https://doc.tock.ai/tock/fr/user/guides/canaux/">nombreux canaux</a>.
+            </p>
+        </header>
+    </section>
+
+    <!-- Carousel -->
+    <section class="carousel">
+        <div class="reel">
+
+            <article>
+                <span class="image featured"><img src="images/pic00.jpg" alt=""/></span>
+                <header>
+                    <h3>Solution éprouvée</h3>
+                </header>
+                <p>Tock est au coeur de services plébiscités comme l'<a href="https://www.oui.sncf/bot/"
+                                                                        target="_ouibot">assistant
+                    <span style="color: #ea5330; font-weight: bold;">OUI</span><span
+                            style="color: orange; font-weight: bold;">.sncf</span></a>
+                    (<a href="https://blog-cultures-services.com/2019/07/09/ouibot-de-ouisncf-laureat-prix-best-robot-experience-2019/"
+                        target="_bestrobotexperience"><em>Best Robot Experience</em></a> en 2018+2019)
+                    ou le service <a href="https://www.allocovid.com/" target="_allocovid"
+                                     title="Le bot AlloCovid est construit avec Tock">
+                        📞&nbsp;&nbsp;<span style="color: #3399FF; font-weight: bold;">Allo</span><span
+                            style="color: #66FF99; font-weight: bold;">Covid</span>
+                    </a> en 2020.</p>
+            </article>
+
+            <article>
+                <span class="image featured"><img src="images/pic01.jpg" alt=""/></span>
+                <header>
+                    <h3>Compréhension du langage</h3>
+                </header>
+                <p>Une solution <em>NLU</em> complète et autonome tirant parti de composants opensource
+                    comme <a href="https://opennlp.apache.org/" target="_opennlp">OpenNLP</a>,
+                    <a href="https://stanfordnlp.github.io/CoreNLP/" target="_stanford">Stanford</a>,
+                    <a href="https://github.com/facebook/duckling" target="_duckling">Duckling</a>
+                    et +.</p>
+            </article>
+
+            <article>
+                <span class="image featured"><img src="images/pic03.jpg" alt=""/></span>
+                <header>
+                    <h3>Assistants tous canaux</h3>
+                </header>
+                <p>Web, mobile, réseaux sociaux, enceintes connectées...
+                    Créez un bot maintenant et connectez-le progressivement à tous vos canaux.</p>
+            </article>
+
+            <article>
+                <span class="image featured"><img src="images/pic02.jpg" alt=""/></span>
+                <header>
+                    <h3>Tock Studio</h3>
+                </header>
+                <p>Des interfaces graphiques simples pour créer scénarios et modèles, gérer multicanal et multilingue,
+                    analyser les tendances dans les conversations.</p>
+            </article>
+
+            <article>
+                <span class="image featured"><img src="images/pic04.jpg" alt=""/></span>
+                <header>
+                    <h3>Framework & API</h3>
+                </header>
+                <p>Développez des parcours complexes avec <a href="https://kotlinlang.org/" target="_kotlin">Kotlin</a>,
+                    <a href="https://www.python.org/" target="_python">Python</a> ou
+                    <a href="https://nodejs.org" target="_nodejs">Node.js</a>
+                    grâce aux composants fournis ou n'importe quel langage avec les <em>API</em> Tock.</p>
+            </article>
+
+            <article>
+                <span class="image featured"><img src="images/pic05.jpg" alt=""/></span>
+                <header>
+                    <h3>Où vous voulez</h3>
+                </header>
+                <p>Testez Tock <a href="https://demo.tock.ai/" target="_demo">en ligne</a>, déployez en quelques minutes
+                    <a href="https://doc.tock.ai/tock/fr/guide/plateforme/">avec Docker</a>
+                    ou créez <a href="https://doc.tock.ai/tock/fr/admin/installation/">votre propre plateforme</a>
+                    <em>Cloud</em>, <em>On-Premise</em> ou même embarquée.</p>
+            </article>
+
+            <article>
+                <span class="image featured"><img src="images/award.jpg" alt=""/></span>
+                <header>
+                    <h3>Ouvert, pour tous</h3>
+                </header>
+                <p>Tock est entièrement <em>Open Source</em>, disponible pour tous sur
+                    <a href="https://github.com/theopenconversationkit/" target="_github">son espace GitHub</a>
+                    et récompensé avec la SNCF par le prix
+                    <a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/"
+                       target="_acteursdulibre"><em>Les Acteurs Du Libre</em></a> en 2019.</p>
+            </article>
+
+        </div>
+    </section>
 
 
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
+    <!-- Features -->
+    <div class="wrapper style1">
 
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3>Rejoignez la communauté.</h3>
-										</header>
-										<p><em>
-											Vous voulez découvrir comment les chatbots se créent et apprennent avec nous ?<br>
-											Vous partagez notre besoin de solutions IA conversationnelles ouvertes ?<br>
-											Vous utilisez déjà Tock ou souhaitez contribuer ?</em><br><br>
-											N'hésitez pas à nous rejoindre, la communauté est ouverte et s'agrandit de jours en jours.</p>
-										<ul class="icons">
-											<li><a href="https://gitter.im/tockchat/Lobby" target="_gitter" class="icon brands fa-gitter"><span class="label">Gitter</span></a></li>
-											<li><a href="https://github.com/theopenconversationkit/tock" target="_github" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-											<li><a href="https://github.com/theopenconversationkit/tock/graphs/contributors" target="_github" class="icon solid fa-users"><span class="label">Contributeurs</span></a></li>
-											<li><a href="http://tosit.fr/" target="_tosit" class="icon solid fa-hands-helping"><span class="label">TOSIT</span></a></li>
-										</ul>
-									</section>
+        <section id="features" class="container special">
+            <header>
+                <h2>Une communauté active.</h2>
+                <p>
+                    De plus en plus d'acteurs font confiance à Tock et aux plateformes conversationnelles ouvertes.<br>
+                    N'hésitez pas à venir en parler avec la communauté sur
+                    <a href="https://gitter.im/tockchat/Lobby" target="_gitter"
+                       title="Retrouvez la communauté Tock sur Gitter (tchat)">
+                        Gitter <span class="icon brands fa-gitter label"></span></a>.
+                </p>
+            </header>
+            <div class="row">
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://www.ima-dt.org/ima/event/detail.html/idConf/952" target="_ima"
+                       class="image featured">
+                        <img src="images/ima.png" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://www.ima-dt.org/ima/event/detail.html/idConf/952" target="_ima">Tock se
+                            présente à l'IMA</a></h3>
+                    </header>
+                    <p>
+                        Après le <a href="https://www.ima-dt.org/ima/event/detail.html/idConf/894/" target="_ima_nlp">
+                        <em>Do Tank Data Science: NLP</em></a> en 2020, Tock revient à
+                        l'<a href="https://www.ima-dt.org/ima/accueil/detail.html/" target="_ima">IMA
+                        <em>(Innovation Makers Alliance)</em></a> pour se présenter plus en détails
+                        dans le cadre du <em>parcours Open Source</em> avec SNCF et Enedis.<br><br>
 
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>&copy; Tock 2017-2020</li>
-											<li>Photos : <a href="https://unsplash.com">Unsplash</a>,
-												<a href="https://www.opensourcesummit.paris/">POSS</a>,
-												<a href="https://www.digital.sncf.com/">SNCF</a>,
-												<a href="https://www.academieduservice.com/">Académie du Service</a>
-												<a href="https://www.allocovid.com/">Allocovid</a>
-											</li>
-											<li>Design : <a href="http://html5up.net">HTML5 UP</a></li>
-										</ul>
-									</div>
+                        N'hésitez pas à <a href="https://www.ima-dt.org/ima/event/detail.html/idConf/952/"
+                                           target="_ima">
+                        vous inscrire (gratuit)</a> et rendez-vous le <strong>21 janvier 2021 (via Teams)</strong>
+                        pour retrouver la communauté IMA, Tock et Open Source.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://www.voicetechparis.com/conferences-2/"
+                       target="_voicetech" class="image featured">
+                        <img src="https://www.voicetechparis.com/wp-content/uploads/2020/10/img-digitale-orange.png"
+                             alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://www.voicetechparis.com/conferences-2/"
+                               target="_voicetech">AlloCovid à Voice Tech Paris</a></h3>
+                    </header>
+                    <p>
+                        Le salon <a href="https://www.voicetechparis.com" target="_voicetech"><em>Voice Tech Paris</em></a>
+                        2020
+                        accueillera une partie de
+                        l'<a href="https://www.allocovid.com/equipe-2" target="_allocovid">équipe AlloCovid</a>
+                        (INSERM, SNCF, Allo-Media) pour un retour sur la mise en place de ce service
+                        conversationnel basé sur Tock.<br><br>
 
-							</div>
+                        RDV le mardi 24/11 à 16h pour la conférence
+                        <a href="https://www.voicetechparis.com/conferences-2/" target="_voicetech">
+                            <strong>AlloCovid, un service téléphonique conversationnel à grande échelle - L'IA
+                                au service de la Santé</strong></a>.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://fr.slideshare.net/FrancoisN0/tock-mlusine-rex-ia-open-source-aiparis-2020"
+                       target="_aiparis_slides" class="image featured">
+                        <img src="images/aiparis2020rex.jpg" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://fr.slideshare.net/FrancoisN0/tock-mlusine-rex-ia-open-source-aiparis-2020"
+                               target="_aiparis_slides">AI Paris 2020</a></h3>
+                    </header>
+                    <p>
+                        Le salon <a href="https://aiparis.fr/2020/" target="_aiparis"><em>AI Paris</em></a> 2020
+                        a accueilli en septembre une table ronde puis un REX sur le thème
+                        <strong>IA & Open Source</strong> avec SNCF, ENEDIS et MAIF.<br><br>
 
-						</div>
-					</div>
-				</div>
+                        Le 14/09 avait lieu <a href="https://aiparis.fr/2020/les-conferences/" target="_aiparis_14">
+                        <strong>la table ronde</strong></a> "<em>IA & Open Source pour les grands comptes</em>"
+                        avec e.Voyageurs SNCF, ENEDIS, MAIF et TOSIT.fr.
+                        Puis le 15, <a
+                            href="https://fr.slideshare.net/FrancoisN0/tock-mlusine-rex-ia-open-source-aiparis-2020"
+                            target="_aiparis_slides"><strong>le REX sur Tock et Mélusine</strong></a>.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://www.allocovid.com/" target="_allocovid" class="image featured">
+                        <img src="images/allocovid.png" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://www.allocovid.com/" target="_allocovid">AlloCovid, un bot engagé</a></h3>
+                    </header>
+                    <p>
+                        Le service <a href="https://www.allocovid.com/"
+                                      target="_allocovid"><strong><em>AlloCovid</em></strong></a>,
+                        construit autour d'un <a href="https://github.com/theopenconversationkit/allocovid"
+                                                 target="_allocovid_bot">bot Tock</a>,
+                        permet d'informer et orienter la population sur le Covid-19.
+                        Fruit de la collaboration de nombreux experts français, partenaires et bénévoles,
+                        il est accessible par téléphone, sur le Web et WhatsApp.<br><br>
+                        Pour en savoir plus, RDV sur <a href="https://www.allocovid.com/"
+                                                        target="_allocovid"><strong><em>www.allocovid.com</em></strong></a>.
+                        Les sources du bot sont elles disponibles <a
+                            href="https://github.com/theopenconversationkit/allocovid" target="_allocovid_bot">ici</a>.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/" target="_acteursdulibre"
+                       class="image featured">
+                        <img src="images/prixacteursdulibre2019.png" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/"
+                               target="_acteursdulibre">Meilleure Stratégie Open Source 2019</a></h3>
+                    </header>
+                    <p>
+                        En 2019 la SNCF est récompensée par <a href="https://lesacteursdulibre.com/"
+                                                               target="_acteursdulibre"><strong><em>Les Acteurs du
+                        Libre</em></strong></a>
+                        pour la <a href="https://lesacteursdulibre.com/portfolio/prix-meilleure-strategie/"
+                                   target="_acteursdulibre">
+                        <strong><em>Meilleure Stratégie Open Source</em></strong></a> et le partage de
+                        plateformes ouvertes comme Tock (e.Voyageurs) ou <a href="https://www.navitia.io/"
+                                                                            target="_navitia">Navitia</a> (Kisio
+                        Digital).<br><br>
+                        Remise du prix le <strong>10 décembre</strong> dans le Grand Auditorium du
+                        <a href="https://www.opensourcesummit.paris/" target="_poss"><em>Paris Open Source
+                            Summit</em></a>
+                        (<a href="https://www.flickr.com/photos/186089225@N03/albums/72157712273229483"
+                            target="_photos_adl">photos</a>).
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video" class="image featured">
+                        <img src="images/POSS2019.jpeg" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video">Paris Open Source
+                            Summit</a></h3>
+                    </header>
+                    <p>
+                        Les créateurs de Tock, des représentants de SNCF, Enedis, EDF, Orange, SogetiLabs et TOSIT
+                        partagent leurs expériences et enjeux
+                        sur le thème "<a href="https://www.youtube.com/watch?v=fTy6uit7Ejg" target="_poss_video">
+                        <strong><em>Conversationnel & Open Source</em></strong></a>" :
+                        innovation, agilité, souveraineté numérique, pérennité, gouvernance...<br><br>
+                        Vous pouvez retrouver la conférence <a href="https://www.youtube.com/watch?v=fTy6uit7Ejg"
+                                                               target="_poss_video">
+                        en ligne</a> sur la chaîne du <a href="https://www.opensourcesummit.paris/" target="_poss"><em>Paris
+                        Open Source Summit</em></a> 2019.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://hackandbot.sncf.com/" target="_hackandbot" class="image featured">
+                        <img src="images/hackandbot2019.jpeg" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://hackandbot.sncf.com/" target="_hackandbot">Hackathon pour tous !</a></h3>
+                    </header>
+                    <p>
+                        La SNCF met à disposition sa plateforme Tock pour un hackathon de deux jours
+                        dédié au Conversationnel. L'événement est ouvert à tous et tous les usages : mobilités,
+                        accessibilité, divertissement... Que le meilleur gagne !<br><br>
+                        Rendez-vous les <strong>21-22 novembre</strong> à l'Espace 574 (St Denis) et sur le site
+                        du <a href="https://hackandbot.sncf.com/" target="_hackandbot"><strong><em>Hack &
+                        Bot</em></strong></a>.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://demo.tock.ai/" target="_demotock" class="image featured">
+                        <img src="images/sandbox.jpg" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://demo.tock.ai/" target="_demotock">Une plateforme Tock disponible pour
+                            tous</a></h3>
+                    </header>
+                    <p>
+                        Depuis cet été, une plateforme publique est disponible en ligne, permettant de
+                        <strong>tester la solution Tock sans rien installer</strong>. Tout est expliqué dans la
+                        documentation,
+                        alors suivez le guide !<br><br>
+                        Connectez-vous sur <a href="https://demo.tock.ai/"
+                                              target="_demotock"><strong>demo.tock.ai</strong></a>
+                        et suivez les instructions "<a href="https://doc.tock.ai/tock/fr/guide/studio/"
+                                                       target="_docdemo"><em>Découvrir Tock</em></a>".
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="http://tosit.fr/" target="_tosit" class="image featured">
+                        <img src="images/tosit-tmp.png" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="http://tosit.fr/" target="_tosit">TOSIT crée son GT Chatbot</a></h3>
+                    </header>
+                    <p>
+                        L'association inter-enterprises <a href="http://tosit.fr/" target="_tosit">TOSIT "<em>The Open
+                        Source I Trust</em>"</a>
+                        crée un <strong>Groupe de Travail dédié aux <em>Chatbots</em></strong> afin de partager
+                        expérience et solutions ouvertes - notamment Tock utilisé par plusieurs membres.<br><br>
+                        Rendez-vous sur <a href="http://tosit.fr/" target="_tosit">TOSIT.fr</a> pour en savoir plus.
+                    </p>
+                </article>
+                <article class="col-4 col-12-mobile special">
+                    <a href="https://doc.tock.ai/tock/fr/apropos/vitrine/" class="image featured">
+                        <img src="images/bestrobot2019.jpeg" alt=""/>
+                    </a>
+                    <header>
+                        <h3><a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">Ils utilisent déjà Tock...</a></h3>
+                    </header>
+                    <p>
+                        Qu'ils nous parlent sur des sites, nos mobiles, réseaux sociaux ou enceintes connectées,
+                        ces assistants et ces entreprises s'appuient sur l'Open Source pour développer
+                        des services innovants.<br><br>
+                        Découvrez les premiers <a href="https://doc.tock.ai/tock/fr/apropos/vitrine/">utilisateurs de
+                        Tock</a>.
+                    </p>
+                </article>
+            </div>
+        </section>
 
-		</div>
+    </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
-	</body>
+    <!-- Footer -->
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Contact -->
+                    <section class="contact">
+                        <header>
+                            <h3>Rejoignez la communauté.</h3>
+                        </header>
+                        <p><em>
+                            Vous voulez découvrir comment les chatbots se créent et apprennent avec nous ?<br>
+                            Vous partagez notre besoin de solutions IA conversationnelles ouvertes ?<br>
+                            Vous utilisez déjà Tock ou souhaitez contribuer ?</em><br><br>
+                            N'hésitez pas à nous rejoindre, la communauté est ouverte et s'agrandit de jours en jours.
+                        </p>
+                        <ul class="icons">
+                            <li><a href="https://gitter.im/tockchat/Lobby" target="_gitter"
+                                   class="icon brands fa-gitter"><span class="label">Gitter</span></a></li>
+                            <li><a href="https://github.com/theopenconversationkit/tock" target="_github"
+                                   class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                            <li><a href="https://github.com/theopenconversationkit/tock/graphs/contributors"
+                                   target="_github" class="icon solid fa-users"><span class="label">Contributeurs</span></a>
+                            </li>
+                            <li><a href="http://tosit.fr/" target="_tosit" class="icon solid fa-hands-helping"><span
+                                    class="label">TOSIT</span></a></li>
+                        </ul>
+                    </section>
+
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        <ul class="menu">
+                            <li>&copy; Tock 2017-2020</li>
+                            <li>Photos : <a href="https://unsplash.com">Unsplash</a>,
+                                <a href="https://www.opensourcesummit.paris/">POSS</a>,
+                                <a href="https://www.digital.sncf.com/">SNCF</a>,
+                                <a href="https://www.academieduservice.com/">Académie du Service</a>
+                                <a href="https://www.allocovid.com/">Allocovid</a>
+                            </li>
+                            <li>Design : <a href="http://html5up.net">HTML5 UP</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+
+    TockReact.renderChat(document.getElementById('chat'), 'https://demo-bot.tock.ai/io/tock/tockbot/web', '', {
+        palette: {
+            text: {
+                card: 'rgba(252,170,62,0.8	)',
+                bot: 'black',
+            },
+            background: {
+                card: 'white',
+                bot: 'rgba(252,170,62,0.34)',
+            },
+        },
+        sizing: {
+            loaderSize: '8px',
+            borderRadius: '8px',
+            conversation: {
+                //	width: '720px',
+            },
+        },
+        typography: {
+            fontFamily: '\'Source Sans Pro\', sans-serif',
+            //fontSize: '24px',
+        },
+        overrides: {
+            //chat: `background: #fff;`,
+            card: {
+                cardContainer: 'width: 27vw;',
+                // cardButton: 'background: white',
+            },
+            chatInput: {
+                // container: 'padding: 0;',
+                // input: 'color: red;',
+                icon: 'width: 3vw; height: 3vh;',
+                // icon: 'width: 10vw; height: 10vh; background: url(\'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Eo_circle_yellow_arrow-right.svg/240px-Eo_circle_yellow_arrow-right.svg.png\') no-repeat left top; background-size: 50%;',
+            },
+        },
+    });
+
+    $(function () {
+        var INDEX = 0;
+        $("#chat-submit").click(function (e) {
+            e.preventDefault();
+            var msg = $("#chat-input").val();
+            if (msg.trim() == '') {
+                return false;
+            }
+            generate_message(msg, 'self');
+            var buttons = [
+                {
+                    name: 'Existing User',
+                    value: 'existing'
+                },
+                {
+                    name: 'New User',
+                    value: 'new'
+                }
+            ];
+            setTimeout(function () {
+                generate_message(msg, 'user');
+            }, 1000)
+
+        })
+
+        function generate_message(msg, type) {
+            INDEX++;
+            var str = "";
+            str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + "\">";
+            str += "          <span class=\"msg-avatar\">";
+            str += "            <img src=\"https:\/\/image.crisp.im\/avatar\/operator\/196af8cc-f6ad-4ef7-afd1-c45d5231387c\/240\/?1483361727745\">";
+            str += "          <\/span>";
+            str += "          <div class=\"cm-msg-text\">";
+            str += msg;
+            str += "          <\/div>";
+            str += "        <\/div>";
+            $(".chat-logs").append(str);
+            $("#cm-msg-" + INDEX).hide().fadeIn(300);
+            if (type == 'self') {
+                $("#chat-input").val('');
+            }
+            $(".chat-logs").stop().animate({scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
+        }
+
+        function generate_button_message(msg, buttons) {
+            /* Buttons should be object array
+              [
+                {
+                  name: 'Existing User',
+                  value: 'existing'
+                },
+                {
+                  name: 'New User',
+                  value: 'new'
+                }
+              ]
+            */
+            INDEX++;
+            var btn_obj = buttons.map(function (button) {
+                return "              <li class=\"button\"><a href=\"javascript:;\" class=\"btn btn-primary chat-btn\" chat-value=\"" + button.value + "\">" + button.name + "<\/a><\/li>";
+            }).join('');
+            var str = "";
+            str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg user\">";
+            str += "          <span class=\"msg-avatar\">";
+            str += "            <img src=\"https:\/\/image.crisp.im\/avatar\/operator\/196af8cc-f6ad-4ef7-afd1-c45d5231387c\/240\/?1483361727745\">";
+            str += "          <\/span>";
+            str += "          <div class=\"cm-msg-text\">";
+            str += msg;
+            str += "          <\/div>";
+            str += "          <div class=\"cm-msg-button\">";
+            str += "            <ul>";
+            str += btn_obj;
+            str += "            <\/ul>";
+            str += "          <\/div>";
+            str += "        <\/div>";
+            $(".chat-logs").append(str);
+            $("#cm-msg-" + INDEX).hide().fadeIn(300);
+            $(".chat-logs").stop().animate({scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
+            $("#chat-input").attr("disabled", true);
+        }
+
+        $(document).delegate(".chat-btn", "click", function () {
+            var value = $(this).attr("chat-value");
+            var name = $(this).html();
+            $("#chat-input").attr("disabled", false);
+            generate_message(name, 'self');
+        })
+
+        $("#chat-circle").click(function () {
+            $("#chat-circle").toggle('scale');
+            $(".chat-box").toggle('scale');
+        })
+
+        $(".chat-box-toggle").click(function () {
+            $("#chat-circle").toggle('scale');
+            $(".chat-box").toggle('scale');
+        })
+
+    })
+    /*var textWrapper = document.querySelector('.ml2');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    anime.timeline({loop: false})
+            .add({
+                targets: '.ml2 .letter',
+                scale: [4,1],
+                opacity: [0,1],
+                translateZ: 0,
+                easing: "easeOutExpo",
+                duration: 950,
+                delay: (el, i) => 70*i
+            }).add({
+        targets: '.ml2',
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 5000
+    });*/
+</script>
+</body>
 </html>
