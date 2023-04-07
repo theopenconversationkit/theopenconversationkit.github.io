@@ -1,0 +1,44 @@
+<title>botexpo</title>
+<html>
+<head>
+<script crossOrigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossOrigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossOrigin src="https://unpkg.com/@emotion/core@10/dist/core.umd.min.js"></script>
+<script crossOrigin src="https://unpkg.com/@emotion/styled@10/dist/styled.umd.min.js"></script>
+<script crossOrigin src="https://unpkg.com/emotion-theming@10/dist/emotion-theming.umd.min.js"></script>
+<script
+        crossOrigin
+        src="https://unpkg.com/tock-react-kit@latest/build/tock-react-kit.umd.js"
+></script>
+<style>
+  body {
+    background-image: url("./mate_bg.png");
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: left;
+    background-color: black;
+  }
+</style>
+</head>
+<body>
+<div id="chat"></div>
+<script>
+    TockReact.renderChat(document.getElementById('chat'), 'https://bot-botexpo.prod.aws.vsct.fr/io/botexpo/botexpo/web', 'referralParameter', {
+        palette: {
+            text: {
+                user: 'black',
+                bot: 'black',
+                card: 'black',
+                input: 'black',
+            },
+            background: {
+                user: 'white',
+                bot: 'orange',
+                card: 'orange',
+                input: 'white',
+            },
+        },
+    });
+</script>
+</body>
+</html>
